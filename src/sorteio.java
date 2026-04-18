@@ -1,13 +1,16 @@
-import java.util.Random;
+import java.util.*;
 
 public class Sorteio {
-    public static void sorteio() {
-        int jogada;
-        Random random = new Random();
-        int[] num = new int[75];
-
-        for (int linha = 0; linha < num.length; linha++) {
-            num[linha] = random.nextInt(1, 76);
+    public static List<Integer> gerarSorteio() {
+        List<Integer> nums = new ArrayList<>();
+        /*
+        List: Array flexivel que cresce e diminui dependendo da necessidade
+        Integer: Significa um objeto inteiro
+         */
+        for (int cont = 1; cont <= 75; cont++) {
+            nums.add(cont); //Adiciona os numeros de 1 a 75 a lista
         }
+        Collections.shuffle(nums); //Desorganiza a lista (embaralha)
+        return nums;
     }
 }

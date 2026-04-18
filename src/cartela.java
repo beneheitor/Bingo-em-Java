@@ -1,18 +1,18 @@
 import java.util.Random;
 
 public class Cartela {
-    public static void cartela() {
-        int cartela[][] = new int[5][5];
+    public static int[][] gerarCartela() {
+        int[][] cartela = new int[5][5];
         Random random = new Random();
         int temp = 0;
 
-        for (int linha = 0; linha < cartela.length; linha++) { // Gerador da tabela de bingo
+        for (int linha = 0; linha < cartela.length; linha++) { // Gerador da matriz de bingo
             for (int coluna = 0; coluna < cartela[linha].length; coluna++) {
                 cartela[linha][coluna] = random.nextInt(1 + coluna * 15, 16 + coluna * 15);
             }
         }
 
-        for (int coluna = 0; coluna < cartela.length; coluna++) { // Controlador de números repetidos
+        for (int coluna = 0; coluna < cartela.length; coluna++) { // Eliminador de números repetidos
             for (int linha = 0; linha < cartela.length; linha++) {
                 for (int linha2 = linha + 1; linha2 < cartela.length; linha2++) {
                     if (cartela[linha][coluna] == cartela[linha2][coluna]) {
@@ -36,12 +36,16 @@ public class Cartela {
             }
         }
 
+        cartela[2][2] = 0;
+        return cartela;
+    }
 
+    public static void imprimirCartela(int[][] cartela) {
 
         System.out.println("""
-        |==================================|
-        ||B     I       N       G       O ||
-        |==================================|""");
+                |==================================|
+                ||B     I       N       G       O ||
+                |==================================|""");
 
         for (int linha = 0; linha < cartela.length; linha++) {
             for (int coluna = 0; coluna < cartela.length; coluna++) {
@@ -52,6 +56,7 @@ public class Cartela {
             }
             System.out.println();
         }
-        System.out.println("**********************************");
+        System.out.println("************************************");
     }
 }
+
