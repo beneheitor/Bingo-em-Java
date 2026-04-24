@@ -1,26 +1,32 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class Cartela {
-    public static int[][] gerarCartela() {
+
+    private int[][] cartela;
+
+    public Cartela() {
+        this.cartela = gerarCartela();
+    }
+
+    private int[][] gerarCartela() {
         int[][] cartela = new int[5][5];
         Random random = new Random();
         int temp = 0;
 
-        for (int linha = 0; linha < cartela.length; linha++) { // Gerador da matriz de bingo
-            for (int coluna = 0; coluna < cartela[linha].length; coluna++) {
-                cartela[linha][coluna] = random.nextInt(1 + coluna * 15, 16 + coluna * 15);
-            }
-        }
+        for (int coluna = 0; coluna < cartela.length; coluna++) { //Gerador da cartela (sem números repetidos)
+            List<Integer> numerosPossiveis = new ArrayList<>();
+            int numero_min = 1 + (coluna * 15);
+            int numero_max = 15 + (coluna * 15);
 
-        for (int coluna = 0; coluna < cartela.length; coluna++) { // Eliminador de números repetidos
+            for (int x = numero_min; x <= numero_max; x++) {
+                numerosPossiveis.add(x);
+            }
+            Collections.shuffle(numerosPossiveis);
             for (int linha = 0; linha < cartela.length; linha++) {
-                for (int linha2 = linha + 1; linha2 < cartela.length; linha2++) {
-                    if (cartela[linha][coluna] == cartela[linha2][coluna]) {
-                        do {
-                            cartela[linha2][coluna] = random.nextInt(1 + coluna * 15, 16 + coluna * 15);
-                        } while (cartela[linha][coluna] == cartela[linha2][coluna]);
-                    }
-                }
+                cartela[linha][coluna] = numerosPossiveis.get(linha);
             }
         }
 
@@ -40,7 +46,11 @@ public class Cartela {
         return cartela;
     }
 
-    public static void imprimirCartela(int[][] cartela) {
+    public int[][] getCartela() {
+        return this.cartela;
+    }
+
+    public void imprimirCartela() {
 
         System.out.println("""
                 |==================================|
