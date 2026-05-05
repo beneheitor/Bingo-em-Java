@@ -2,34 +2,28 @@ import java.util.List;
 
 public class Jogada {
 
-    Sorteio sorte = new Sorteio();
-
-    private int numerosDisponiveis;
     private int turno;
 
     public Jogada() {
-        this.numerosDisponiveis = geraNumerosDisponiveis(sorte.getFila());
-        this.turno = geraTurno(sorte.getSorteados());
+        this.turno = 0;
     }
 
-    private int geraNumerosDisponiveis(List<Integer> fila) {
-        numerosDisponiveis = fila.size();// this: Chama a varial de fora para ser utilizada dentro de algum lugar
-        return numerosDisponiveis;
+    public void geraNumerosDisponiveis(List<Integer> fila) {
+        int numerosDisponiveis = fila.size();
     }
 
-    private int geraTurno(List<Integer> sorteados) {
-        turno = sorteados.size();
-        return turno;
+    public void geraTurno(List<Integer> sorteio) {
+        this.turno = sorteio.size();
     }
 
     public int getTurno() {
-        return this.turno;
+        return turno;
     }
 
     /// PRINTS PARA VER SE OS CODIGOS ESTÃO COLETANDO OS DADOS CORRETAMENTE ///
 
     public void imprimirTurno() {
-        System.out.println("Turno: " + this.turno);
+        System.out.println("Turno: " + getTurno());
     }
 }
 

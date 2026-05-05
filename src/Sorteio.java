@@ -1,41 +1,45 @@
 import java.util.*;
 
 public class Sorteio {
+
     private int numeroSorteado;
-    private List<Integer> fila = new ArrayList<>();
-    private List<Integer> sorteados = new ArrayList<>();
+    private List<Integer> fila;
+    private List<Integer> sorteados;
 
     public Sorteio() {
-        this.fila = gerarFila();
-        this.numeroSorteado = gerarNumeroSorteado();
-        this.sorteados = gerarListaSorteados();
+        this.fila = new ArrayList<Integer>();
+        this.sorteados = new ArrayList<Integer>();
+        gerarFila();
     }
 
-    private List<Integer> gerarFila() {
-        List<Integer> nums = new ArrayList<>();
-
+    private void gerarFila() {
         /*
         List: Array flexivel que cresce e diminui dependendo da necessidade
         Integer: Significa um objeto inteiro
          */
         for (int cont = 1; cont <= 75; cont++) {
-            nums.add(cont); //Adiciona os numeros de 1 a 75 a lista
+            this.fila.add(cont); //Adiciona os numeros de 1 a 75 a lista
         }
-        Collections.shuffle(nums);//Desorganiza a lista (embaralha)
-        return nums;
+        Collections.shuffle(this.fila);//Desorganiza a lista (embaralha)
     }
 
-    private int gerarNumeroSorteado() {
-        if (this.fila.isEmpty()) {
-            System.out.println("Todos os números já foram sorteados!");
-            return -1;
+    public void gerarNumeroSorteado() {
+        if (!this.fila.isEmpty()) {
+            this.numeroSorteado = this.fila.remove(0);
+            this.sorteados.add(this.numeroSorteado);
+        } else {
+            System.out.println("Todos os númerso ja foram sorteados");
         }
+    }
 
-        this.numeroSorteado = this.fila.remove(0);
-
-        this.sorteados.add(this.numeroSorteado);
-
-        return this.numeroSorteado;
+    public void alterarCartela(int[][] cartela) {
+        for (int linha = 0; linha < cartela.length; linha++) {
+            for (int coluna = 0; coluna < cartela[linha].length; coluna++) {
+                if (getNumeroSorteado() == cartela[linha][coluna]) {
+                    cartela[linha][coluna] = 0;
+                }
+            }
+        }
     }
 
     public List<Integer> getFila() {

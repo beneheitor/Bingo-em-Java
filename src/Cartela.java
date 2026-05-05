@@ -47,7 +47,7 @@ public class Cartela {
     }
 
     public int[][] getCartela() {
-        return this.cartela;
+        return cartela;
     }
 
     public void imprimirCartela() {
@@ -58,7 +58,7 @@ public class Cartela {
                 |==================================|""");
 
         for (int linha = 0; linha < cartela.length; linha++) {
-            for (int coluna = 0; coluna < cartela.length; coluna++) {
+            for (int coluna = 0; coluna < cartela[linha].length; coluna++) {
                 // O \t serve para dar um espaço de "Tabulação"
                 // para manter as colunas alinhada na tela
                 System.out.print(cartela[linha][coluna] + "\t\t");
