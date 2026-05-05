@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Agora, ao instanciar, a cartela já é gerada perfeitamente
+        Scanner scanner = new Scanner(System.in);
         Cartela cartelaJogador1 = new Cartela();
         Cartela cartelaJogador2 = new Cartela();
 
@@ -11,12 +12,11 @@ public class Main {
         Validador validador = new Validador();
 
         do {
-        System.out.println("--- CARTELAS INICIAIS ---");
+        System.out.println("-------- CARTELAS INICIAIS --------");
         cartelaJogador1.imprimirCartela();
-        System.out.println("");
         cartelaJogador2.imprimirCartela();
 
-        System.out.println("\n--- SORTEANDO UM NÚMERO ---");
+        System.out.println("\n------- SORTEANDO UM NÚMERO -------\n");
         sorte.gerarNumeroSorteado();
         System.out.println("Número Sorteado: " + sorte.getNumeroSorteado());
 
@@ -24,7 +24,20 @@ public class Main {
         sorte.alterarCartela(cartelaJogador1.getCartela());
         sorte.alterarCartela(cartelaJogador2.getCartela());
 
-        sorte.imprimirSorteios();
+        char pare = scanner.next().charAt(0;
+
         } while (validador.verificarCartela(cartelaJogador1.getCartela()) == 0 && validador.verificarCartela(cartelaJogador2.getCartela()) == 0);
+
+        System.out.println("-------- Números sorteados --------");
+        sorte.imprimirSorteios();
+        if (validador.verificarCartela(cartelaJogador1.getCartela()) == 0) {
+            System.out.println("\n-------- CARTELA VENCEDORA --------");
+            cartelaJogador1.imprimirCartela();
+        } else {
+            System.out.println("\n-------- CARTELA VENCEDORA --------");
+            cartelaJogador2.imprimirCartela();
+        }
+
+        scanner.close();
     }
 }

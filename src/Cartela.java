@@ -53,7 +53,7 @@ public class Cartela {
     public void imprimirCartela() {
 
         System.out.println("""
-                |==================================|
+                \n|==================================|
                 ||B     I       N       G       O ||
                 |==================================|""");
 
@@ -66,7 +66,7 @@ public class Cartela {
             }
             System.out.println();
         }
-        System.out.println("************************************");
+        System.out.println("************************************\n");
     }
 }
 
